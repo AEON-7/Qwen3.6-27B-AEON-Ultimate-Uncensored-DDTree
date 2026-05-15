@@ -1,0 +1,22 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+venv/
+build/
+dist/
+*.egg-info/
+
+# Local benchmark/runtime output
+logs/
+tmp/
+*.log
+
+# Local secrets and machine-specific settings
+.env
+.env.*
+!.env.example

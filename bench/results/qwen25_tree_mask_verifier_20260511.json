@@ -1,0 +1,249 @@
+{
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "prompt": "Write one vivid sentence about sunrise over the ocean.",
+  "prompt_tokens": 39,
+  "budget": 8,
+  "depth": 6,
+  "top_k": 4,
+  "tree_nodes_including_root": 9,
+  "self_draft_chain_tokens": [
+    2121,
+    279,
+    7015,
+    13970,
+    37168,
+    916
+  ],
+  "top1_matches": 8,
+  "verifier_nodes": 8,
+  "all_tree_logits_top1_match_replay": true,
+  "max_abs_logit_diff": 0.265625,
+  "accepted_token_ids": [
+    2121,
+    279,
+    1156
+  ],
+  "bonus_token_id": 44120,
+  "tree_output_token_ids": [
+    2121,
+    279,
+    1156,
+    44120
+  ],
+  "baseline_greedy_token_ids": [
+    2121,
+    279,
+    1156,
+    44120
+  ],
+  "matches_baseline_greedy": true,
+  "tree_output_text": "As the first rays",
+  "baseline_greedy_text": "As the first rays",
+  "comparisons": [
+    {
+      "node_index": 1,
+      "path": [
+        2121
+      ],
+      "batched_top1": 279,
+      "replay_top1": 279,
+      "top1_match": true,
+      "max_abs_logit_diff": 0.21875
+    },
+    {
+      "node_index": 2,
+      "path": [
+        2121,
+        279
+      ],
+      "batched_top1": 1156,
+      "replay_top1": 1156,
+      "top1_match": true,
+      "max_abs_logit_diff": 0.191406
+    },
+    {
+      "node_index": 3,
+      "path": [
+        2121,
+        279,
+        1156
+      ],
+      "batched_top1": 44120,
+      "replay_top1": 44120,
+      "top1_match": true,
+      "max_abs_logit_diff": 0.0
+    },
+    {
+      "node_index": 4,
+      "path": [
+        2121,
+        279,
+        1156,
+        13970
+      ],
+      "batched_top1": 16062,
+      "replay_top1": 16062,
+      "top1_match": true,
+      "max_abs_logit_diff": 0.226562
+    },
+    {
+      "node_index": 5,
+      "path": [
+        2121,
+        279,
+        1156,
+        13970,
+        37168
+      ],
+      "batched_top1": 916,
+      "replay_top1": 916,
+      "top1_match": true,
+      "max_abs_logit_diff": 0.1875
+    },
+    {
+      "node_index": 6,
+      "path": [
+        2121,
+        279,
+        1156,
+        13970,
+        37168,
+        916
+      ],
+      "batched_top1": 279,
+      "replay_top1": 279,
+      "top1_match": true,
+      "max_abs_logit_diff": 0.265625
+    },
+    {
+      "node_index": 7,
+      "path": [
+        2121,
+        279,
+        7015
+      ],
+      "batched_top1": 13970,
+      "replay_top1": 13970,
+      "top1_match": true,
+      "max_abs_logit_diff": 0.0
+    },
+    {
+      "node_index": 8,
+      "path": [
+        785
+      ],
+      "batched_top1": 1156,
+      "replay_top1": 1156,
+      "top1_match": true,
+      "max_abs_logit_diff": 0.25
+    }
+  ],
+  "tree": [
+    {
+      "index": 0,
+      "parent_index": null,
+      "token_id": 198,
+      "depth": 0,
+      "score": 0.0,
+      "path": []
+    },
+    {
+      "index": 1,
+      "parent_index": 0,
+      "token_id": 2121,
+      "depth": 1,
+      "score": -0.338153,
+      "path": [
+        2121
+      ]
+    },
+    {
+      "index": 2,
+      "parent_index": 1,
+      "token_id": 279,
+      "depth": 2,
+      "score": -0.37765,
+      "path": [
+        2121,
+        279
+      ]
+    },
+    {
+      "index": 3,
+      "parent_index": 2,
+      "token_id": 1156,
+      "depth": 3,
+      "score": -1.391697,
+      "path": [
+        2121,
+        279,
+        1156
+      ]
+    },
+    {
+      "index": 4,
+      "parent_index": 3,
+      "token_id": 13970,
+      "depth": 4,
+      "score": -3.133006,
+      "path": [
+        2121,
+        279,
+        1156,
+        13970
+      ]
+    },
+    {
+      "index": 5,
+      "parent_index": 4,
+      "token_id": 37168,
+      "depth": 5,
+      "score": -3.924717,
+      "path": [
+        2121,
+        279,
+        1156,
+        13970,
+        37168
+      ]
+    },
+    {
+      "index": 6,
+      "parent_index": 5,
+      "token_id": 916,
+      "depth": 6,
+      "score": -4.319384,
+      "path": [
+        2121,
+        279,
+        1156,
+        13970,
+        37168,
+        916
+      ]
+    },
+    {
+      "index": 7,
+      "parent_index": 2,
+      "token_id": 7015,
+      "depth": 3,
+      "score": -1.391697,
+      "path": [
+        2121,
+        279,
+        7015
+      ]
+    },
+    {
+      "index": 8,
+      "parent_index": 0,
+      "token_id": 785,
+      "depth": 1,
+      "score": -1.963153,
+      "path": [
+        785
+      ]
+    }
+  ],
+  "elapsed_seconds": 5.804
+}

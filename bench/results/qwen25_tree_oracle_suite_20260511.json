@@ -1,0 +1,1071 @@
+{
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "budget": 8,
+  "depth": 6,
+  "top_k": 4,
+  "prompt_count": 6,
+  "all_match_baseline_greedy": true,
+  "elapsed_seconds": 6.771,
+  "results": [
+    {
+      "model": "Qwen/Qwen2.5-0.5B-Instruct",
+      "category": "coding",
+      "prompt": "Write a compact Python function that returns the first duplicate item in a list.",
+      "prompt_tokens": 44,
+      "budget": 8,
+      "depth": 6,
+      "top_k": 4,
+      "tree_nodes_including_root": 9,
+      "verifier_token_ids": [
+        95456,
+        0,
+        21193,
+        374,
+        264,
+        16830,
+        5692,
+        374
+      ],
+      "verifier_parent_indices": [
+        -1,
+        0,
+        1,
+        2,
+        3,
+        4,
+        1,
+        6
+      ],
+      "self_draft_chain_tokens": [
+        95456,
+        0,
+        21193,
+        374,
+        264,
+        16830
+      ],
+      "accepted_token_ids": [
+        95456,
+        0,
+        21193,
+        374,
+        264,
+        16830
+      ],
+      "bonus_token_id": 13027,
+      "tree_output_token_ids": [
+        95456,
+        0,
+        21193,
+        374,
+        264,
+        16830,
+        13027
+      ],
+      "baseline_greedy_token_ids": [
+        95456,
+        0,
+        21193,
+        374,
+        264,
+        16830,
+        13027
+      ],
+      "matches_baseline_greedy": true,
+      "accepted_text": "Certainly! Below is a compact",
+      "bonus_text": " Python",
+      "tree_output_text": "Certainly! Below is a compact Python",
+      "baseline_greedy_text": "Certainly! Below is a compact Python",
+      "tree": [
+        {
+          "index": 0,
+          "parent_index": null,
+          "token_id": 198,
+          "depth": 0,
+          "score": 0.0,
+          "path": []
+        },
+        {
+          "index": 1,
+          "parent_index": 0,
+          "token_id": 95456,
+          "depth": 1,
+          "score": -0.455444,
+          "path": [
+            95456
+          ]
+        },
+        {
+          "index": 2,
+          "parent_index": 1,
+          "token_id": 0,
+          "depth": 2,
+          "score": -0.460204,
+          "path": [
+            95456,
+            0
+          ]
+        },
+        {
+          "index": 3,
+          "parent_index": 2,
+          "token_id": 21193,
+          "depth": 3,
+          "score": -0.976082,
+          "path": [
+            95456,
+            0,
+            21193
+          ]
+        },
+        {
+          "index": 4,
+          "parent_index": 3,
+          "token_id": 374,
+          "depth": 4,
+          "score": -0.976309,
+          "path": [
+            95456,
+            0,
+            21193,
+            374
+          ]
+        },
+        {
+          "index": 5,
+          "parent_index": 4,
+          "token_id": 264,
+          "depth": 5,
+          "score": -0.978838,
+          "path": [
+            95456,
+            0,
+            21193,
+            374,
+            264
+          ]
+        },
+        {
+          "index": 6,
+          "parent_index": 5,
+          "token_id": 16830,
+          "depth": 6,
+          "score": -1.500777,
+          "path": [
+            95456,
+            0,
+            21193,
+            374,
+            264,
+            16830
+          ]
+        },
+        {
+          "index": 7,
+          "parent_index": 2,
+          "token_id": 5692,
+          "depth": 3,
+          "score": -1.851082,
+          "path": [
+            95456,
+            0,
+            5692
+          ]
+        },
+        {
+          "index": 8,
+          "parent_index": 7,
+          "token_id": 374,
+          "depth": 4,
+          "score": -1.851309,
+          "path": [
+            95456,
+            0,
+            5692,
+            374
+          ]
+        }
+      ],
+      "elapsed_seconds": 0.818
+    },
+    {
+      "model": "Qwen/Qwen2.5-0.5B-Instruct",
+      "category": "math",
+      "prompt": "A shop discounts a $48 item by 25%, then adds 8% tax. What is the final price?",
+      "prompt_tokens": 55,
+      "budget": 8,
+      "depth": 6,
+      "top_k": 4,
+      "tree_nodes_including_root": 9,
+      "verifier_token_ids": [
+        1249,
+        8253,
+        279,
+        1590,
+        3349,
+        315,
+        11047,
+        279
+      ],
+      "verifier_parent_indices": [
+        -1,
+        0,
+        1,
+        2,
+        3,
+        4,
+        0,
+        6
+      ],
+      "self_draft_chain_tokens": [
+        1249,
+        8253,
+        279,
+        1590,
+        3349,
+        315
+      ],
+      "accepted_token_ids": [
+        1249,
+        8253,
+        279,
+        1590,
+        3349,
+        315
+      ],
+      "bonus_token_id": 279,
+      "tree_output_token_ids": [
+        1249,
+        8253,
+        279,
+        1590,
+        3349,
+        315,
+        279
+      ],
+      "baseline_greedy_token_ids": [
+        1249,
+        8253,
+        279,
+        1590,
+        3349,
+        315,
+        279
+      ],
+      "matches_baseline_greedy": true,
+      "accepted_text": "To determine the final price of",
+      "bonus_text": " the",
+      "tree_output_text": "To determine the final price of the",
+      "baseline_greedy_text": "To determine the final price of the",
+      "tree": [
+        {
+          "index": 0,
+          "parent_index": null,
+          "token_id": 198,
+          "depth": 0,
+          "score": 0.0,
+          "path": []
+        },
+        {
+          "index": 1,
+          "parent_index": 0,
+          "token_id": 1249,
+          "depth": 1,
+          "score": -0.086464,
+          "path": [
+            1249
+          ]
+        },
+        {
+          "index": 2,
+          "parent_index": 1,
+          "token_id": 8253,
+          "depth": 2,
+          "score": -0.477128,
+          "path": [
+            1249,
+            8253
+          ]
+        },
+        {
+          "index": 3,
+          "parent_index": 2,
+          "token_id": 279,
+          "depth": 3,
+          "score": -0.477128,
+          "path": [
+            1249,
+            8253,
+            279
+          ]
+        },
+        {
+          "index": 4,
+          "parent_index": 3,
+          "token_id": 1590,
+          "depth": 4,
+          "score": -0.477158,
+          "path": [
+            1249,
+            8253,
+            279,
+            1590
+          ]
+        },
+        {
+          "index": 5,
+          "parent_index": 4,
+          "token_id": 3349,
+          "depth": 5,
+          "score": -0.477296,
+          "path": [
+            1249,
+            8253,
+            279,
+            1590,
+            3349
+          ]
+        },
+        {
+          "index": 6,
+          "parent_index": 5,
+          "token_id": 315,
+          "depth": 6,
+          "score": -0.659665,
+          "path": [
+            1249,
+            8253,
+            279,
+            1590,
+            3349,
+            315
+          ]
+        },
+        {
+          "index": 7,
+          "parent_index": 1,
+          "token_id": 11047,
+          "depth": 2,
+          "score": -1.852128,
+          "path": [
+            1249,
+            11047
+          ]
+        },
+        {
+          "index": 8,
+          "parent_index": 7,
+          "token_id": 279,
+          "depth": 3,
+          "score": -1.852128,
+          "path": [
+            1249,
+            11047,
+            279
+          ]
+        }
+      ],
+      "elapsed_seconds": 0.186
+    },
+    {
+      "model": "Qwen/Qwen2.5-0.5B-Instruct",
+      "category": "reasoning",
+      "prompt": "Mira is older than Sol, and Sol is older than Ren. Who is the youngest?",
+      "prompt_tokens": 48,
+      "budget": 8,
+      "depth": 6,
+      "top_k": 4,
+      "tree_nodes_including_root": 9,
+      "verifier_token_ids": [
+        28715,
+        389,
+        279,
+        1995,
+        3897,
+        11,
+        1249,
+        389
+      ],
+      "verifier_parent_indices": [
+        -1,
+        0,
+        1,
+        2,
+        3,
+        4,
+        -1,
+        6
+      ],
+      "self_draft_chain_tokens": [
+        28715,
+        389,
+        279,
+        1995,
+        3897,
+        11
+      ],
+      "accepted_token_ids": [
+        28715,
+        389,
+        279,
+        1995,
+        3897,
+        11
+      ],
+      "bonus_token_id": 582,
+      "tree_output_token_ids": [
+        28715,
+        389,
+        279,
+        1995,
+        3897,
+        11,
+        582
+      ],
+      "baseline_greedy_token_ids": [
+        28715,
+        389,
+        279,
+        1995,
+        3897,
+        11,
+        582
+      ],
+      "matches_baseline_greedy": true,
+      "accepted_text": "Based on the information provided,",
+      "bonus_text": " we",
+      "tree_output_text": "Based on the information provided, we",
+      "baseline_greedy_text": "Based on the information provided, we",
+      "tree": [
+        {
+          "index": 0,
+          "parent_index": null,
+          "token_id": 198,
+          "depth": 0,
+          "score": 0.0,
+          "path": []
+        },
+        {
+          "index": 1,
+          "parent_index": 0,
+          "token_id": 28715,
+          "depth": 1,
+          "score": -0.71262,
+          "path": [
+            28715
+          ]
+        },
+        {
+          "index": 2,
+          "parent_index": 1,
+          "token_id": 389,
+          "depth": 2,
+          "score": -0.71337,
+          "path": [
+            28715,
+            389
+          ]
+        },
+        {
+          "index": 3,
+          "parent_index": 2,
+          "token_id": 279,
+          "depth": 3,
+          "score": -0.713894,
+          "path": [
+            28715,
+            389,
+            279
+          ]
+        },
+        {
+          "index": 4,
+          "parent_index": 3,
+          "token_id": 1995,
+          "depth": 4,
+          "score": -0.993043,
+          "path": [
+            28715,
+            389,
+            279,
+            1995
+          ]
+        },
+        {
+          "index": 5,
+          "parent_index": 4,
+          "token_id": 3897,
+          "depth": 5,
+          "score": -1.127725,
+          "path": [
+            28715,
+            389,
+            279,
+            1995,
+            3897
+          ]
+        },
+        {
+          "index": 6,
+          "parent_index": 5,
+          "token_id": 11,
+          "depth": 6,
+          "score": -1.546204,
+          "path": [
+            28715,
+            389,
+            279,
+            1995,
+            3897,
+            11
+          ]
+        },
+        {
+          "index": 7,
+          "parent_index": 0,
+          "token_id": 1249,
+          "depth": 1,
+          "score": -1.58762,
+          "path": [
+            1249
+          ]
+        },
+        {
+          "index": 8,
+          "parent_index": 7,
+          "token_id": 389,
+          "depth": 2,
+          "score": -1.58837,
+          "path": [
+            1249,
+            389
+          ]
+        }
+      ],
+      "elapsed_seconds": 0.184
+    },
+    {
+      "model": "Qwen/Qwen2.5-0.5B-Instruct",
+      "category": "prose",
+      "prompt": "Write one vivid sentence about sunrise over the ocean.",
+      "prompt_tokens": 39,
+      "budget": 8,
+      "depth": 6,
+      "top_k": 4,
+      "tree_nodes_including_root": 9,
+      "verifier_token_ids": [
+        2121,
+        279,
+        1156,
+        37168,
+        916,
+        279,
+        7015,
+        785
+      ],
+      "verifier_parent_indices": [
+        -1,
+        0,
+        1,
+        2,
+        3,
+        4,
+        1,
+        -1
+      ],
+      "self_draft_chain_tokens": [
+        2121,
+        279,
+        7015,
+        37168,
+        916,
+        279
+      ],
+      "accepted_token_ids": [
+        2121,
+        279,
+        1156
+      ],
+      "bonus_token_id": 44120,
+      "tree_output_token_ids": [
+        2121,
+        279,
+        1156,
+        44120
+      ],
+      "baseline_greedy_token_ids": [
+        2121,
+        279,
+        1156,
+        44120
+      ],
+      "matches_baseline_greedy": true,
+      "accepted_text": "As the first",
+      "bonus_text": " rays",
+      "tree_output_text": "As the first rays",
+      "baseline_greedy_text": "As the first rays",
+      "tree": [
+        {
+          "index": 0,
+          "parent_index": null,
+          "token_id": 198,
+          "depth": 0,
+          "score": 0.0,
+          "path": []
+        },
+        {
+          "index": 1,
+          "parent_index": 0,
+          "token_id": 2121,
+          "depth": 1,
+          "score": -0.362657,
+          "path": [
+            2121
+          ]
+        },
+        {
+          "index": 2,
+          "parent_index": 1,
+          "token_id": 279,
+          "depth": 2,
+          "score": -0.404825,
+          "path": [
+            2121,
+            279
+          ]
+        },
+        {
+          "index": 3,
+          "parent_index": 2,
+          "token_id": 1156,
+          "depth": 3,
+          "score": -1.435003,
+          "path": [
+            2121,
+            279,
+            1156
+          ]
+        },
+        {
+          "index": 4,
+          "parent_index": 3,
+          "token_id": 37168,
+          "depth": 4,
+          "score": -3.102888,
+          "path": [
+            2121,
+            279,
+            1156,
+            37168
+          ]
+        },
+        {
+          "index": 5,
+          "parent_index": 4,
+          "token_id": 916,
+          "depth": 5,
+          "score": -3.350781,
+          "path": [
+            2121,
+            279,
+            1156,
+            37168,
+            916
+          ]
+        },
+        {
+          "index": 6,
+          "parent_index": 5,
+          "token_id": 279,
+          "depth": 6,
+          "score": -3.355266,
+          "path": [
+            2121,
+            279,
+            1156,
+            37168,
+            916,
+            279
+          ]
+        },
+        {
+          "index": 7,
+          "parent_index": 2,
+          "token_id": 7015,
+          "depth": 3,
+          "score": -1.435003,
+          "path": [
+            2121,
+            279,
+            7015
+          ]
+        },
+        {
+          "index": 8,
+          "parent_index": 0,
+          "token_id": 785,
+          "depth": 1,
+          "score": -1.862657,
+          "path": [
+            785
+          ]
+        }
+      ],
+      "elapsed_seconds": 0.135
+    },
+    {
+      "model": "Qwen/Qwen2.5-0.5B-Instruct",
+      "category": "natural",
+      "prompt": "Explain why rainbows appear after storms in plain language.",
+      "prompt_tokens": 41,
+      "budget": 8,
+      "depth": 6,
+      "top_k": 4,
+      "tree_nodes_including_root": 9,
+      "verifier_token_ids": [
+        59039,
+        54531,
+        525,
+        264,
+        6233,
+        5810,
+        4498,
+        54531
+      ],
+      "verifier_parent_indices": [
+        -1,
+        0,
+        1,
+        2,
+        3,
+        4,
+        -1,
+        6
+      ],
+      "self_draft_chain_tokens": [
+        59039,
+        54531,
+        525,
+        264,
+        6233,
+        5810
+      ],
+      "accepted_token_ids": [
+        59039,
+        54531,
+        525,
+        264,
+        6233,
+        5810
+      ],
+      "bonus_token_id": 24844,
+      "tree_output_token_ids": [
+        59039,
+        54531,
+        525,
+        264,
+        6233,
+        5810,
+        24844
+      ],
+      "baseline_greedy_token_ids": [
+        59039,
+        54531,
+        525,
+        264,
+        6233,
+        5810,
+        24844
+      ],
+      "matches_baseline_greedy": true,
+      "accepted_text": "Rainbows are a beautiful natural",
+      "bonus_text": " phenomenon",
+      "tree_output_text": "Rainbows are a beautiful natural phenomenon",
+      "baseline_greedy_text": "Rainbows are a beautiful natural phenomenon",
+      "tree": [
+        {
+          "index": 0,
+          "parent_index": null,
+          "token_id": 198,
+          "depth": 0,
+          "score": 0.0,
+          "path": []
+        },
+        {
+          "index": 1,
+          "parent_index": 0,
+          "token_id": 59039,
+          "depth": 1,
+          "score": -0.494731,
+          "path": [
+            59039
+          ]
+        },
+        {
+          "index": 2,
+          "parent_index": 1,
+          "token_id": 54531,
+          "depth": 2,
+          "score": -0.502512,
+          "path": [
+            59039,
+            54531
+          ]
+        },
+        {
+          "index": 3,
+          "parent_index": 2,
+          "token_id": 525,
+          "depth": 3,
+          "score": -1.186651,
+          "path": [
+            59039,
+            54531,
+            525
+          ]
+        },
+        {
+          "index": 4,
+          "parent_index": 3,
+          "token_id": 264,
+          "depth": 4,
+          "score": -2.382996,
+          "path": [
+            59039,
+            54531,
+            525,
+            264
+          ]
+        },
+        {
+          "index": 5,
+          "parent_index": 4,
+          "token_id": 6233,
+          "depth": 5,
+          "score": -2.997906,
+          "path": [
+            59039,
+            54531,
+            525,
+            264,
+            6233
+          ]
+        },
+        {
+          "index": 6,
+          "parent_index": 5,
+          "token_id": 5810,
+          "depth": 6,
+          "score": -3.283561,
+          "path": [
+            59039,
+            54531,
+            525,
+            264,
+            6233,
+            5810
+          ]
+        },
+        {
+          "index": 7,
+          "parent_index": 0,
+          "token_id": 4498,
+          "depth": 1,
+          "score": -1.744731,
+          "path": [
+            4498
+          ]
+        },
+        {
+          "index": 8,
+          "parent_index": 7,
+          "token_id": 54531,
+          "depth": 2,
+          "score": -1.752512,
+          "path": [
+            4498,
+            54531
+          ]
+        }
+      ],
+      "elapsed_seconds": 0.185
+    },
+    {
+      "model": "Qwen/Qwen2.5-0.5B-Instruct",
+      "category": "extraction",
+      "prompt": "Extract JSON with name and city from: 'Ada Lovelace moved to London.'",
+      "prompt_tokens": 46,
+      "budget": 8,
+      "depth": 6,
+      "top_k": 4,
+      "tree_nodes_including_root": 9,
+      "verifier_token_ids": [
+        28715,
+        389,
+        279,
+        3897,
+        1467,
+        11,
+        785,
+        389
+      ],
+      "verifier_parent_indices": [
+        -1,
+        0,
+        1,
+        2,
+        3,
+        4,
+        -1,
+        6
+      ],
+      "self_draft_chain_tokens": [
+        28715,
+        389,
+        279,
+        3897,
+        1467,
+        11
+      ],
+      "accepted_token_ids": [
+        28715,
+        389,
+        279,
+        3897,
+        1467,
+        11
+      ],
+      "bonus_token_id": 1052,
+      "tree_output_token_ids": [
+        28715,
+        389,
+        279,
+        3897,
+        1467,
+        11,
+        1052
+      ],
+      "baseline_greedy_token_ids": [
+        28715,
+        389,
+        279,
+        3897,
+        1467,
+        11,
+        1052
+      ],
+      "matches_baseline_greedy": true,
+      "accepted_text": "Based on the provided text,",
+      "bonus_text": " there",
+      "tree_output_text": "Based on the provided text, there",
+      "baseline_greedy_text": "Based on the provided text, there",
+      "tree": [
+        {
+          "index": 0,
+          "parent_index": null,
+          "token_id": 198,
+          "depth": 0,
+          "score": 0.0,
+          "path": []
+        },
+        {
+          "index": 1,
+          "parent_index": 0,
+          "token_id": 28715,
+          "depth": 1,
+          "score": -1.711256,
+          "path": [
+            28715
+          ]
+        },
+        {
+          "index": 2,
+          "parent_index": 1,
+          "token_id": 389,
+          "depth": 2,
+          "score": -1.711494,
+          "path": [
+            28715,
+            389
+          ]
+        },
+        {
+          "index": 3,
+          "parent_index": 2,
+          "token_id": 279,
+          "depth": 3,
+          "score": -1.715875,
+          "path": [
+            28715,
+            389,
+            279
+          ]
+        },
+        {
+          "index": 4,
+          "parent_index": 3,
+          "token_id": 3897,
+          "depth": 4,
+          "score": -2.847189,
+          "path": [
+            28715,
+            389,
+            279,
+            3897
+          ]
+        },
+        {
+          "index": 5,
+          "parent_index": 4,
+          "token_id": 1467,
+          "depth": 5,
+          "score": -3.885952,
+          "path": [
+            28715,
+            389,
+            279,
+            3897,
+            1467
+          ]
+        },
+        {
+          "index": 6,
+          "parent_index": 5,
+          "token_id": 11,
+          "depth": 6,
+          "score": -4.326636,
+          "path": [
+            28715,
+            389,
+            279,
+            3897,
+            1467,
+            11
+          ]
+        },
+        {
+          "index": 7,
+          "parent_index": 0,
+          "token_id": 785,
+          "depth": 1,
+          "score": -1.836256,
+          "path": [
+            785
+          ]
+        },
+        {
+          "index": 8,
+          "parent_index": 7,
+          "token_id": 389,
+          "depth": 2,
+          "score": -1.836494,
+          "path": [
+            785,
+            389
+          ]
+        }
+      ],
+      "elapsed_seconds": 0.183
+    }
+  ]
+}
