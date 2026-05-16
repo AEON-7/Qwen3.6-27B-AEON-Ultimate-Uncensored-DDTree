@@ -102,6 +102,13 @@ move from paper prototype toward live Qwen3.6 verification:
   width-guarded so padded/guided decode windows cannot read past the parent-id
   tensor.
 
+- M12A-M12B: M72 branchguard benchmark path. M12A adds the full-branch
+  prefix guard and tree-sample materialization controls; M12B batches branch
+  conv/SSM state mirroring with indexed assignment. With the `ddtree-full`
+  defaults in this branch, PP128/TG128/C1/N30 measured 48.59959369047473 warm
+  median TG tok/s versus 12.588425708507211 for plain serving and
+  39.881352291526 for the no-DDTree DFlash baseline.
+
 Flat DFlash behavior is preserved unless `SPEC_METHOD=dflash_ddtree` and the
 guarded DDTree runtime env vars are enabled. The `ddtree` entrypoint enables the
 validated deployable-safe recipe by default: `MAX_MODEL_LEN=2048`,

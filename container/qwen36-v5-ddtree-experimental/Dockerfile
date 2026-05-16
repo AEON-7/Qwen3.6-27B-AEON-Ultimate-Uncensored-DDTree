@@ -96,7 +96,9 @@ RUN chmod +x docker/*.sh scripts/*.sh scripts/*.py \
  && python3 scripts/apply_dflash_ddtree_m11l.py \
  && python3 scripts/apply_dflash_ddtree_m11m.py \
  && python3 scripts/apply_dflash_ddtree_m11n.py \
- && python3 scripts/apply_dflash_ddtree_m11o.py
+ && python3 scripts/apply_dflash_ddtree_m11o.py \
+ && python3 scripts/apply_dflash_ddtree_m12a.py \
+ && python3 scripts/apply_dflash_ddtree_m12b.py
 
 RUN python3 - <<'PY'
 import py_compile

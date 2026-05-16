@@ -40,6 +40,86 @@ repo. The stable repo is for users who want the best working Qwen3.6 serving
 path today; this repo is for the DDTree research line, including incomplete
 paths, failed attempts, and reproducible benchmarks.
 
+
+## DDTree M72 benchmark result
+
+This branch keeps the existing DDTree research layout and adds the minimal M72
+branch-state fast path needed for the Spark 6 PP128/TG128 benchmark. The normal
+`dflash` entrypoint remains unchanged; `ddtree-full` now defaults to the M72
+validated full-branch recipe.
+
+Side-by-side result, measured on DGX Spark / GB10 with PP128/TG128/C1/N30 and
+one warmup run dropped:
+
+| Mode | Image / entrypoint | Warm median TG tok/s | Exact TG128 | Relative to plain |
+|---|---|---:|---:|---:|
+| No DDTree / no DFlash | `ghcr.io/aeon-7/vllm-aeon-ultimate-dflash:qwen36-v4` / plain `vllm serve` | 12.588425708507211 | 30/30 | 1.000x |
+| DFlash / no DDTree | `ghcr.io/aeon-7/vllm-aeon-ultimate-dflash:qwen36-v4` / `dflash` | 39.881352291526 | 30/30 | 3.168096886378281x |
+| DDTree M72 | this branch / `ddtree-full` | 48.59959369047473 | 30/30 | 3.860656988874415x |
+
+DDTree M72 vs DFlash speedup from warm medians: `1.218604457923589x`
+(`+21.860445792358906%`). The small machine-readable summary is in
+`bench/results/qwen36_ddtree_m72_vs_dflash_pp128_tg128_c1_n30_summary.json`.
+
+What changed:
+
+- `apply_dflash_ddtree_m12a.py`: adds the prefix guard and tree-sample
+  materialization controls used by the validated branchguard run.
+- `apply_dflash_ddtree_m12b.py`: batches branch conv/SSM state mirroring and
+  fixes the advanced-indexing `copy_()` issue by using indexed assignment.
+- `ddtree-full` defaults to the M72 knobs so the repro command does not need a
+  long environment block.
+
+Minimal repro:
+
+```bash
+# Build this branch.
+docker build -t aeon-ddtree:m72 container/qwen36-v5-ddtree-experimental
+
+# Plain baseline: no DDTree and no DFlash speculative config.
+docker run --gpus all -d --name aeon-plain-baseline --network host --ipc host \
+  -v /path/to/aeon-xs:/models/aeon-xs:ro \
+  ghcr.io/aeon-7/vllm-aeon-ultimate-dflash:qwen36-v4 \
+  vllm serve /models/aeon-xs --served-model-name aeon-ultimate \
+    --host 0.0.0.0 --port 8000 --quantization modelopt \
+    --max-model-len 2048 --max-num-seqs 1 --max-num-batched-tokens 2048 \
+    --enable-chunked-prefill --no-enable-prefix-caching --trust-remote-code
+
+python3 openai_stream_bench.py --base-url http://127.0.0.1:8000 \
+  --model aeon-ultimate --corpus /path/to/corpus.txt \
+  --out-dir results/plain-pp128-tg128-c1-n30 \
+  --pp 128 --tg 128 --runs 30 --warmup-drop 1 --temperature 0
+
+docker rm -f aeon-plain-baseline
+
+# DFlash baseline: same target model plus DFlash drafter, no DDTree.
+docker run --gpus all -d --name aeon-dflash-baseline --network host --ipc host \
+  -v /path/to/aeon-xs:/models/aeon-xs:ro \
+  -v /path/to/dflash-drafter:/models/dflash-drafter:ro \
+  ghcr.io/aeon-7/vllm-aeon-ultimate-dflash:qwen36-v4 dflash
+
+python3 openai_stream_bench.py --base-url http://127.0.0.1:8000 \
+  --model aeon-ultimate --corpus /path/to/corpus.txt \
+  --out-dir results/dflash-pp128-tg128-c1-n30 \
+  --pp 128 --tg 128 --runs 30 --warmup-drop 1 --temperature 0
+
+# DDTree M72: same model mounts, this branch's ddtree-full defaults.
+docker rm -f aeon-dflash-baseline
+docker run --gpus all -d --name aeon-ddtree-m72 --network host --ipc host \
+  -v /path/to/aeon-xs:/models/aeon-xs:ro \
+  -v /path/to/dflash-drafter:/models/dflash-drafter:ro \
+  aeon-ddtree:m72 ddtree-full
+
+python3 openai_stream_bench.py --base-url http://127.0.0.1:8000 \
+  --model aeon-ultimate --corpus /path/to/corpus.txt \
+  --out-dir results/ddtree-m72-pp128-tg128-c1-n30 \
+  --pp 128 --tg 128 --runs 30 --warmup-drop 1 --temperature 0
+```
+
+Validation gate: all three rows must report `30/30` exact TG128 before comparing
+warm medians.
+
+
 ## Container
 
 ```bash

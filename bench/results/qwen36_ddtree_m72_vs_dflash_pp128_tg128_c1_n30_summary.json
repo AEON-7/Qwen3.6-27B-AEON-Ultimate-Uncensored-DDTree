@@ -1,0 +1,36 @@
+{
+  "benchmark": "Qwen3.6 AEON Ultimate plain vs DFlash vs DDTree M72 branchguard",
+  "shape": {
+    "pp": 128,
+    "tg": 128,
+    "concurrency": 1,
+    "runs": 30,
+    "warmup_drop": 1
+  },
+  "metric": "tg_tok_s_warm.median",
+  "plain_no_dflash_no_ddtree": {
+    "source_image": "ghcr.io/aeon-7/vllm-aeon-ultimate-dflash:qwen36-v4",
+    "entrypoint": "plain vllm serve without speculative-config",
+    "source_artifact": "redacted-local-artifact/phase0-baseline-no-dflash/pp128_tg128_c1_n30_reasoning_v2/summary.json",
+    "warm_median_tg_tok_s": 12.588425708507211,
+    "valid_exact_tg_runs": "30/30"
+  },
+  "baseline_dflash": {
+    "source_image": "ghcr.io/aeon-7/vllm-aeon-ultimate-dflash:qwen36-v4",
+    "source_artifact": "redacted-local-artifact/phase1-baseline-dflash/pp128_tg128_c1_n30_reasoning_v2/summary.json",
+    "warm_median_tg_tok_s": 39.881352291526,
+    "valid_exact_tg_runs": "30/30"
+  },
+  "ddtree_m72": {
+    "source_image": "aeon-ddtree-upgrade:m72-batched-state-assign",
+    "source_artifact": "redacted-local-artifact/phase3-implementation/m72-batched-state-branchguard-n30-log32/pp128_tg128_c1_n30/summary.json",
+    "warm_median_tg_tok_s": 48.59959369047473,
+    "valid_exact_tg_runs": "30/30"
+  },
+  "dflash_vs_plain_speedup_x": 3.168096886378281,
+  "dflash_vs_plain_speedup_percent": 216.8096886378281,
+  "ddtree_vs_plain_speedup_x": 3.8606569888744153,
+  "ddtree_vs_plain_speedup_percent": 286.06569888744156,
+  "ddtree_vs_dflash_speedup_x": 1.218604457923589,
+  "ddtree_vs_dflash_speedup_percent": 21.860445792358906
+}
