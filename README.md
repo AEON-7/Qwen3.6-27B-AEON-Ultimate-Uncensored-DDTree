@@ -61,12 +61,30 @@ DDTree M72 vs DFlash speedup from warm medians: `1.218604457923589x`
 (`+21.860445792358906%`). The small machine-readable summary is in
 `bench/results/qwen36_ddtree_m72_vs_dflash_pp128_tg128_c1_n30_summary.json`.
 
+Published v4 DFlash reference benchmark shape, rerun side by side:
+
+| Category | Reference v4 DFlash decode tok/s | DDTree M72 decode tok/s | DDTree / Reference | Reference TTFT p50 | DDTree TTFT p50 | Reference TPOT p50 | DDTree TPOT p50 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Coding | 30.01 | 18.73 | 0.624x | 138 ms | 137 ms | 32.56 ms | 53.07 ms |
+| Math | 39.36 | 19.67 | 0.500x | 131 ms | 133 ms | 24.75 ms | 50.73 ms |
+| Reasoning | 40.77 | 21.61 | 0.530x | 133 ms | 134 ms | 23.84 ms | 49.94 ms |
+| Prose | 31.11 | 16.37 | 0.526x | 131 ms | 132 ms | 31.50 ms | 61.09 ms |
+| Natural language | 32.30 | 19.47 | 0.603x | 132 ms | 132 ms | 30.35 ms | 50.16 ms |
+| Extraction / JSON | 51.79 | 18.21 | 0.352x | 136 ms | 137 ms | 18.65 ms | 53.52 ms |
+| **Average** | **37.56** | **19.01** | **0.506x** | **133 ms** | **134 ms** | **26.94 ms** | **53.09 ms** |
+
+This shows M72 is not faster on the longer thinking-enabled v4 category
+benchmark, even though it improves the short PP128/TG128 canary. The
+machine-readable summaries are in:
+
+- `bench/results/qwen36_ddtree_m72_vs_dflash_pp128_tg128_c1_n30_summary.json`
+- `bench/results/qwen36_ddtree_m72_vs_v4_reference_categories_summary.json`
+
 What changed:
 
-- `apply_dflash_ddtree_m12a.py`: adds the prefix guard and tree-sample
-  materialization controls used by the validated branchguard run.
-- `apply_dflash_ddtree_m12b.py`: batches branch conv/SSM state mirroring and
-  fixes the advanced-indexing `copy_()` issue by using indexed assignment.
+- `apply_dflash_ddtree_m12.py`: adds the prefix guard, tree-sample
+  materialization controls, and batched branch conv/SSM state mirroring used by
+  the validated M72 branchguard run.
 - `ddtree-full` defaults to the M72 knobs so the repro command does not need a
   long environment block.
 

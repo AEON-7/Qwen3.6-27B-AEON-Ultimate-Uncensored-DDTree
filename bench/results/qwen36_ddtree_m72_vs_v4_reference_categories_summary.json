@@ -1,0 +1,102 @@
+{
+  "benchmark": "Qwen3.6 AEON Ultimate v4 DFlash reference category benchmark vs DDTree M72",
+  "shape": {
+    "levels": [1],
+    "categories": [
+      "coding",
+      "math",
+      "reasoning",
+      "prose",
+      "natural_language",
+      "extraction_json"
+    ],
+    "max_tokens": 200,
+    "temperature": 0.0,
+    "enable_thinking": true,
+    "runs_per_point": 1,
+    "min_samples_per_point": 16,
+    "trim_fraction": 0.2,
+    "dflash_k": 15
+  },
+  "metric": "aggregate_tok_s_mean at c=1",
+  "request_count": {
+    "reference_dflash_v4": 96,
+    "ddtree_m72": 96
+  },
+  "rows": [
+    {
+      "category": "coding",
+      "reference_decode_tok_s": 30.012709306600723,
+      "ddtree_decode_tok_s": 18.72556048325868,
+      "speedup_vs_reference": 0.6239210293200804,
+      "reference_ttft_ms": 137.5448155002232,
+      "ddtree_ttft_ms": 137.3999741015723,
+      "reference_tpot_ms": 32.56466049499977,
+      "ddtree_tpot_ms": 53.07409366775838
+    },
+    {
+      "category": "math",
+      "reference_decode_tok_s": 39.36154912149943,
+      "ddtree_decode_tok_s": 19.67407463272739,
+      "speedup_vs_reference": 0.49982978495074865,
+      "reference_ttft_ms": 130.89370890011196,
+      "ddtree_ttft_ms": 132.67393199930666,
+      "reference_tpot_ms": 24.745397194999896,
+      "ddtree_tpot_ms": 50.72550442452564
+    },
+    {
+      "category": "reasoning",
+      "reference_decode_tok_s": 40.774663524180255,
+      "ddtree_decode_tok_s": 21.606180054650586,
+      "speedup_vs_reference": 0.5298922955388131,
+      "reference_ttft_ms": 133.4601009995822,
+      "ddtree_ttft_ms": 133.9484429998265,
+      "reference_tpot_ms": 23.844861028002924,
+      "ddtree_tpot_ms": 49.94376725684803
+    },
+    {
+      "category": "prose",
+      "reference_decode_tok_s": 31.105004421597037,
+      "ddtree_decode_tok_s": 16.36764437383945,
+      "speedup_vs_reference": 0.5262061420082923,
+      "reference_ttft_ms": 131.1998354991374,
+      "ddtree_ttft_ms": 132.0170308012166,
+      "reference_tpot_ms": 31.503399994000574,
+      "ddtree_tpot_ms": 61.09056020189706
+    },
+    {
+      "category": "natural_language",
+      "reference_decode_tok_s": 32.3049643124144,
+      "ddtree_decode_tok_s": 19.469346426161046,
+      "speedup_vs_reference": 0.6026735159920674,
+      "reference_ttft_ms": 131.55089809952187,
+      "ddtree_ttft_ms": 132.4731769011123,
+      "reference_tpot_ms": 30.34564954600137,
+      "ddtree_tpot_ms": 50.158307081510564
+    },
+    {
+      "category": "extraction_json",
+      "reference_decode_tok_s": 51.787054514145495,
+      "ddtree_decode_tok_s": 18.205180814596364,
+      "speedup_vs_reference": 0.35153922124734216,
+      "reference_ttft_ms": 136.02173500039498,
+      "ddtree_ttft_ms": 137.14662900092662,
+      "reference_tpot_ms": 18.650748651998583,
+      "ddtree_tpot_ms": 53.52216927922851
+    },
+    {
+      "category": "average",
+      "reference_decode_tok_s": 37.55765753340622,
+      "ddtree_decode_tok_s": 19.00799779753892,
+      "speedup_vs_reference": 0.5061017924409149,
+      "reference_ttft_ms": 133.44518233316194,
+      "ddtree_ttft_ms": 134.27653096732683,
+      "reference_tpot_ms": 26.94245281833385,
+      "ddtree_tpot_ms": 53.08573365196136
+    }
+  ],
+  "source_artifacts": {
+    "reference_dflash_v4": "redacted-local-artifact/reference_dflash_v4/category_bench.json",
+    "ddtree_m72": "redacted-local-artifact/ddtree_m72/category_bench.json"
+  }
+}
