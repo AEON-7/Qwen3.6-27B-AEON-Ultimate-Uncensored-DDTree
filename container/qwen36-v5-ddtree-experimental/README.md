@@ -109,6 +109,45 @@ move from paper prototype toward live Qwen3.6 verification:
   48.59959369047473 warm median TG tok/s versus 12.588425708507211 for plain
   serving and 39.881352291526 for the no-DDTree DFlash baseline.
 
+### M72 on the published v4 reference benchmark shape
+
+The published v4 DFlash reference table uses natural prompts with thinking
+enabled, `max_tokens=200`, `temperature=0.0`, DFlash `k=15`, category
+concurrency `c=1`, and 16 samples per category after the harness expands
+`--min-samples-per-point 16`.
+
+The same harness was rerun with the production reference image and with this
+branch's `ddtree-full` M72 image, using:
+
+```bash
+python3 scripts/bench_categories_stream.py \
+  --levels 1 \
+  --categories coding,math,reasoning,prose,natural_language,extraction_json \
+  --max-tokens 200 \
+  --temperature 0.0 \
+  --enable-thinking \
+  --runs-per-point 1 \
+  --min-samples-per-point 16 \
+  --trim-fraction 0.2
+```
+
+On this benchmark shape M72 is slower than the v4 DFlash reference. The PP128 /
+TG128 canary still shows the M72 fast path, but the longer thinking-enabled
+category prompts expose DDTree branch-state overhead and lower acceptance.
+
+| Category | Reference v4 DFlash decode tok/s | DDTree M72 decode tok/s | DDTree / Reference | Reference TTFT p50 | DDTree TTFT p50 | Reference TPOT p50 | DDTree TPOT p50 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Coding | 30.01 | 18.73 | 0.624x | 138 ms | 137 ms | 32.56 ms | 53.07 ms |
+| Math | 39.36 | 19.67 | 0.500x | 131 ms | 133 ms | 24.75 ms | 50.73 ms |
+| Reasoning | 40.77 | 21.61 | 0.530x | 133 ms | 134 ms | 23.84 ms | 49.94 ms |
+| Prose | 31.11 | 16.37 | 0.526x | 131 ms | 132 ms | 31.50 ms | 61.09 ms |
+| Natural language | 32.30 | 19.47 | 0.603x | 132 ms | 132 ms | 30.35 ms | 50.16 ms |
+| Extraction / JSON | 51.79 | 18.21 | 0.352x | 136 ms | 137 ms | 18.65 ms | 53.52 ms |
+| **Average** | **37.56** | **19.01** | **0.506x** | **133 ms** | **134 ms** | **26.94 ms** | **53.09 ms** |
+
+All 96 requests completed in each mode (`16/16` per category). Raw run artifacts
+were kept locally with path identifiers redacted from this README.
+
 Flat DFlash behavior is preserved unless `SPEC_METHOD=dflash_ddtree` and the
 guarded DDTree runtime env vars are enabled. The `ddtree` entrypoint enables the
 validated deployable-safe recipe by default: `MAX_MODEL_LEN=2048`,
