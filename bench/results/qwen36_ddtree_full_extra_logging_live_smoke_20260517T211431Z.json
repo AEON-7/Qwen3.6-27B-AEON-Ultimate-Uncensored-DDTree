@@ -1,0 +1,354 @@
+{
+  "timestamp_utc": "2026-05-17T21:15:28.792754+00:00",
+  "base_url": "http://127.0.0.1:8000/v1",
+  "model": "aeon-ultimate",
+  "model_info": {
+    "object": "list",
+    "data": [
+      {
+        "id": "aeon-ultimate",
+        "object": "model",
+        "created": 1779052471,
+        "owned_by": "vllm",
+        "root": "/models/xs",
+        "parent": null,
+        "max_model_len": 1024,
+        "permission": [
+          {
+            "id": "modelperm-a690b6c6d440efdf",
+            "object": "model_permission",
+            "created": 1779052471,
+            "allow_create_engine": false,
+            "allow_sampling": true,
+            "allow_logprobs": true,
+            "allow_search_indices": false,
+            "allow_view": true,
+            "allow_fine_tuning": false,
+            "organization": "*",
+            "group": null,
+            "is_blocking": false
+          }
+        ]
+      },
+      {
+        "id": "qwen36-ultimate",
+        "object": "model",
+        "created": 1779052471,
+        "owned_by": "vllm",
+        "root": "/models/xs",
+        "parent": null,
+        "max_model_len": 1024,
+        "permission": [
+          {
+            "id": "modelperm-910e93f75a1011e0",
+            "object": "model_permission",
+            "created": 1779052471,
+            "allow_create_engine": false,
+            "allow_sampling": true,
+            "allow_logprobs": true,
+            "allow_search_indices": false,
+            "allow_view": true,
+            "allow_fine_tuning": false,
+            "organization": "*",
+            "group": null,
+            "is_blocking": false
+          }
+        ]
+      },
+      {
+        "id": "aeon-fast",
+        "object": "model",
+        "created": 1779052471,
+        "owned_by": "vllm",
+        "root": "/models/xs",
+        "parent": null,
+        "max_model_len": 1024,
+        "permission": [
+          {
+            "id": "modelperm-8eb499e2d3a3adf2",
+            "object": "model_permission",
+            "created": 1779052471,
+            "allow_create_engine": false,
+            "allow_sampling": true,
+            "allow_logprobs": true,
+            "allow_search_indices": false,
+            "allow_view": true,
+            "allow_fine_tuning": false,
+            "organization": "*",
+            "group": null,
+            "is_blocking": false
+          }
+        ]
+      },
+      {
+        "id": "aeon-deep",
+        "object": "model",
+        "created": 1779052471,
+        "owned_by": "vllm",
+        "root": "/models/xs",
+        "parent": null,
+        "max_model_len": 1024,
+        "permission": [
+          {
+            "id": "modelperm-bcc4c15e68e4abda",
+            "object": "model_permission",
+            "created": 1779052471,
+            "allow_create_engine": false,
+            "allow_sampling": true,
+            "allow_logprobs": true,
+            "allow_search_indices": false,
+            "allow_view": true,
+            "allow_fine_tuning": false,
+            "organization": "*",
+            "group": null,
+            "is_blocking": false
+          }
+        ]
+      },
+      {
+        "id": "qwen36-ultimate-xs",
+        "object": "model",
+        "created": 1779052471,
+        "owned_by": "vllm",
+        "root": "/models/xs",
+        "parent": null,
+        "max_model_len": 1024,
+        "permission": [
+          {
+            "id": "modelperm-8a2d3b31bde38ed1",
+            "object": "model_permission",
+            "created": 1779052471,
+            "allow_create_engine": false,
+            "allow_sampling": true,
+            "allow_logprobs": true,
+            "allow_search_indices": false,
+            "allow_view": true,
+            "allow_fine_tuning": false,
+            "organization": "*",
+            "group": null,
+            "is_blocking": false
+          }
+        ]
+      }
+    ]
+  },
+  "tests": [
+    {
+      "name": "prose",
+      "payload_summary": {
+        "model": "aeon-ultimate",
+        "max_tokens": 96,
+        "temperature": 0,
+        "has_response_format": false,
+        "has_tools": false
+      },
+      "result": {
+        "ok": true,
+        "status": 200,
+        "elapsed_s": 55.412,
+        "json": {
+          "id": "chatcmpl-8f7dd93152f38325",
+          "object": "chat.completion",
+          "created": 1779052471,
+          "prompt_routed_experts": null,
+          "model": "aeon-ultimate",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "The horizon bled gold and the the the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the",
+                "refusal": null,
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [],
+                "reasoning": null
+              },
+              "logprobs": null,
+              "finish_reason": "length",
+              "stop_reason": null,
+              "token_ids": null,
+              "routed_experts": null
+            }
+          ],
+          "service_tier": null,
+          "system_fingerprint": "vllm-0.20.2rc1.dev166+gf6490a284-0bec0b7c",
+          "usage": {
+            "prompt_tokens": 26,
+            "total_tokens": 122,
+            "completion_tokens": 96,
+            "prompt_tokens_details": null
+          },
+          "prompt_logprobs": null,
+          "prompt_token_ids": null,
+          "kv_transfer_params": null
+        },
+        "body_prefix": null
+      },
+      "content": "The horizon bled gold and the the the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the",
+      "content_len": 414,
+      "content_prefix": "The horizon bled gold and the the the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon, the horizon",
+      "reasoning_len": null,
+      "reasoning_prefix": null,
+      "tool_calls": [],
+      "tool_call_count": 0,
+      "finish_reason": "length",
+      "usage": {
+        "prompt_tokens": 26,
+        "total_tokens": 122,
+        "completion_tokens": 96,
+        "prompt_tokens_details": null
+      },
+      "checks": {
+        "has_visible_content": true,
+        "reasoning_only": false
+      }
+    },
+    {
+      "name": "math_17x23",
+      "payload_summary": {
+        "model": "aeon-ultimate",
+        "max_tokens": 48,
+        "temperature": 0,
+        "has_response_format": false,
+        "has_tools": false
+      },
+      "result": {
+        "ok": true,
+        "status": 200,
+        "elapsed_s": 0.485,
+        "json": {
+          "id": "chatcmpl-bd1bba6fd900355f",
+          "object": "chat.completion",
+          "created": 1779052526,
+          "prompt_routed_experts": null,
+          "model": "aeon-ultimate",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "391",
+                "refusal": null,
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [],
+                "reasoning": null
+              },
+              "logprobs": null,
+              "finish_reason": "stop",
+              "stop_reason": null,
+              "token_ids": null,
+              "routed_experts": null
+            }
+          ],
+          "service_tier": null,
+          "system_fingerprint": "vllm-0.20.2rc1.dev166+gf6490a284-0bec0b7c",
+          "usage": {
+            "prompt_tokens": 28,
+            "total_tokens": 32,
+            "completion_tokens": 4,
+            "prompt_tokens_details": null
+          },
+          "prompt_logprobs": null,
+          "prompt_token_ids": null,
+          "kv_transfer_params": null
+        },
+        "body_prefix": null
+      },
+      "content": "391",
+      "content_len": 3,
+      "content_prefix": "391",
+      "reasoning_len": null,
+      "reasoning_prefix": null,
+      "tool_calls": [],
+      "tool_call_count": 0,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 28,
+        "total_tokens": 32,
+        "completion_tokens": 4,
+        "prompt_tokens_details": null
+      },
+      "checks": {
+        "contains_391": true,
+        "contains_known_bad_39_only": false
+      }
+    },
+    {
+      "name": "guided_json",
+      "payload_summary": {
+        "model": "aeon-ultimate",
+        "max_tokens": 96,
+        "temperature": 0,
+        "has_response_format": true,
+        "has_tools": false
+      },
+      "result": {
+        "ok": false,
+        "status": 500,
+        "elapsed_s": 1.349,
+        "json": {
+          "error": {
+            "message": "EngineCore encountered an issue. See stack trace (above) for the root cause.",
+            "type": "InternalServerError",
+            "param": null,
+            "code": 500
+          }
+        },
+        "body_prefix": "{\"error\":{\"message\":\"EngineCore encountered an issue. See stack trace (above) for the root cause.\",\"type\":\"InternalServerError\",\"param\":null,\"code\":500}}"
+      },
+      "content": null,
+      "content_len": null,
+      "content_prefix": null,
+      "reasoning_len": null,
+      "reasoning_prefix": null,
+      "tool_calls": [],
+      "tool_call_count": 0,
+      "finish_reason": null,
+      "usage": {},
+      "checks": {
+        "json_content_parseable": false
+      }
+    },
+    {
+      "name": "tool_call",
+      "payload_summary": {
+        "model": "aeon-ultimate",
+        "max_tokens": 96,
+        "temperature": 0,
+        "has_response_format": false,
+        "has_tools": true
+      },
+      "result": {
+        "ok": false,
+        "status": 500,
+        "elapsed_s": 0.002,
+        "json": {
+          "error": {
+            "message": "EngineCore encountered an issue. See stack trace (above) for the root cause.",
+            "type": "InternalServerError",
+            "param": null,
+            "code": 500
+          }
+        },
+        "body_prefix": "{\"error\":{\"message\":\"EngineCore encountered an issue. See stack trace (above) for the root cause.\",\"type\":\"InternalServerError\",\"param\":null,\"code\":500}}"
+      },
+      "content": null,
+      "content_len": null,
+      "content_prefix": null,
+      "reasoning_len": null,
+      "reasoning_prefix": null,
+      "tool_calls": [],
+      "tool_call_count": 0,
+      "finish_reason": null,
+      "usage": {},
+      "checks": {
+        "has_openai_tool_call": false,
+        "raw_tool_text": false
+      }
+    }
+  ]
+}

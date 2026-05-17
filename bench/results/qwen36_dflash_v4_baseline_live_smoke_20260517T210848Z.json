@@ -1,0 +1,442 @@
+{
+  "timestamp_utc": "2026-05-17T21:08:52.705482+00:00",
+  "base_url": "http://127.0.0.1:8000/v1",
+  "model": "aeon-ultimate",
+  "model_info": {
+    "object": "list",
+    "data": [
+      {
+        "id": "aeon-ultimate",
+        "object": "model",
+        "created": 1779052128,
+        "owned_by": "vllm",
+        "root": "/models/xs",
+        "parent": null,
+        "max_model_len": 256000,
+        "permission": [
+          {
+            "id": "modelperm-849b33277a75ac0d",
+            "object": "model_permission",
+            "created": 1779052128,
+            "allow_create_engine": false,
+            "allow_sampling": true,
+            "allow_logprobs": true,
+            "allow_search_indices": false,
+            "allow_view": true,
+            "allow_fine_tuning": false,
+            "organization": "*",
+            "group": null,
+            "is_blocking": false
+          }
+        ]
+      },
+      {
+        "id": "qwen36-ultimate",
+        "object": "model",
+        "created": 1779052128,
+        "owned_by": "vllm",
+        "root": "/models/xs",
+        "parent": null,
+        "max_model_len": 256000,
+        "permission": [
+          {
+            "id": "modelperm-ab3ba6ad2b99fbe9",
+            "object": "model_permission",
+            "created": 1779052128,
+            "allow_create_engine": false,
+            "allow_sampling": true,
+            "allow_logprobs": true,
+            "allow_search_indices": false,
+            "allow_view": true,
+            "allow_fine_tuning": false,
+            "organization": "*",
+            "group": null,
+            "is_blocking": false
+          }
+        ]
+      },
+      {
+        "id": "aeon-fast",
+        "object": "model",
+        "created": 1779052128,
+        "owned_by": "vllm",
+        "root": "/models/xs",
+        "parent": null,
+        "max_model_len": 256000,
+        "permission": [
+          {
+            "id": "modelperm-8c39357d2cc3a16c",
+            "object": "model_permission",
+            "created": 1779052128,
+            "allow_create_engine": false,
+            "allow_sampling": true,
+            "allow_logprobs": true,
+            "allow_search_indices": false,
+            "allow_view": true,
+            "allow_fine_tuning": false,
+            "organization": "*",
+            "group": null,
+            "is_blocking": false
+          }
+        ]
+      },
+      {
+        "id": "aeon-deep",
+        "object": "model",
+        "created": 1779052128,
+        "owned_by": "vllm",
+        "root": "/models/xs",
+        "parent": null,
+        "max_model_len": 256000,
+        "permission": [
+          {
+            "id": "modelperm-9a84549c76375605",
+            "object": "model_permission",
+            "created": 1779052128,
+            "allow_create_engine": false,
+            "allow_sampling": true,
+            "allow_logprobs": true,
+            "allow_search_indices": false,
+            "allow_view": true,
+            "allow_fine_tuning": false,
+            "organization": "*",
+            "group": null,
+            "is_blocking": false
+          }
+        ]
+      },
+      {
+        "id": "aeon-ultimate-xs",
+        "object": "model",
+        "created": 1779052128,
+        "owned_by": "vllm",
+        "root": "/models/xs",
+        "parent": null,
+        "max_model_len": 256000,
+        "permission": [
+          {
+            "id": "modelperm-8c944f5e934bb1cd",
+            "object": "model_permission",
+            "created": 1779052128,
+            "allow_create_engine": false,
+            "allow_sampling": true,
+            "allow_logprobs": true,
+            "allow_search_indices": false,
+            "allow_view": true,
+            "allow_fine_tuning": false,
+            "organization": "*",
+            "group": null,
+            "is_blocking": false
+          }
+        ]
+      }
+    ]
+  },
+  "tests": [
+    {
+      "name": "prose",
+      "payload_summary": {
+        "model": "aeon-ultimate",
+        "max_tokens": 96,
+        "temperature": 0,
+        "has_response_format": false,
+        "has_tools": false
+      },
+      "result": {
+        "ok": true,
+        "status": 200,
+        "elapsed_s": 1.818,
+        "json": {
+          "id": "chatcmpl-a0b39d49958d71e6",
+          "object": "chat.completion",
+          "created": 1779052128,
+          "prompt_routed_experts": null,
+          "model": "aeon-ultimate",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "The horizon bled molten gold into the indigo sea, igniting the waves in a silent, shimmering explosion of light.",
+                "refusal": null,
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [],
+                "reasoning": null
+              },
+              "logprobs": null,
+              "finish_reason": "stop",
+              "stop_reason": null,
+              "token_ids": null,
+              "routed_experts": null
+            }
+          ],
+          "service_tier": null,
+          "system_fingerprint": "vllm-0.20.2rc1.dev166+gf6490a284-4afcd4fa",
+          "usage": {
+            "prompt_tokens": 26,
+            "total_tokens": 54,
+            "completion_tokens": 28,
+            "prompt_tokens_details": null
+          },
+          "prompt_logprobs": null,
+          "prompt_token_ids": null,
+          "kv_transfer_params": null
+        },
+        "body_prefix": null
+      },
+      "content": "The horizon bled molten gold into the indigo sea, igniting the waves in a silent, shimmering explosion of light.",
+      "content_len": 112,
+      "content_prefix": "The horizon bled molten gold into the indigo sea, igniting the waves in a silent, shimmering explosion of light.",
+      "reasoning_len": null,
+      "reasoning_prefix": null,
+      "tool_calls": [],
+      "tool_call_count": 0,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 26,
+        "total_tokens": 54,
+        "completion_tokens": 28,
+        "prompt_tokens_details": null
+      },
+      "checks": {
+        "has_visible_content": true,
+        "reasoning_only": false
+      }
+    },
+    {
+      "name": "math_17x23",
+      "payload_summary": {
+        "model": "aeon-ultimate",
+        "max_tokens": 48,
+        "temperature": 0,
+        "has_response_format": false,
+        "has_tools": false
+      },
+      "result": {
+        "ok": true,
+        "status": 200,
+        "elapsed_s": 0.454,
+        "json": {
+          "id": "chatcmpl-a313a17d2623546f",
+          "object": "chat.completion",
+          "created": 1779052130,
+          "prompt_routed_experts": null,
+          "model": "aeon-ultimate",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "391",
+                "refusal": null,
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [],
+                "reasoning": null
+              },
+              "logprobs": null,
+              "finish_reason": "stop",
+              "stop_reason": null,
+              "token_ids": null,
+              "routed_experts": null
+            }
+          ],
+          "service_tier": null,
+          "system_fingerprint": "vllm-0.20.2rc1.dev166+gf6490a284-4afcd4fa",
+          "usage": {
+            "prompt_tokens": 28,
+            "total_tokens": 32,
+            "completion_tokens": 4,
+            "prompt_tokens_details": null
+          },
+          "prompt_logprobs": null,
+          "prompt_token_ids": null,
+          "kv_transfer_params": null
+        },
+        "body_prefix": null
+      },
+      "content": "391",
+      "content_len": 3,
+      "content_prefix": "391",
+      "reasoning_len": null,
+      "reasoning_prefix": null,
+      "tool_calls": [],
+      "tool_call_count": 0,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 28,
+        "total_tokens": 32,
+        "completion_tokens": 4,
+        "prompt_tokens_details": null
+      },
+      "checks": {
+        "contains_391": true,
+        "contains_known_bad_39_only": false
+      }
+    },
+    {
+      "name": "guided_json",
+      "payload_summary": {
+        "model": "aeon-ultimate",
+        "max_tokens": 96,
+        "temperature": 0,
+        "has_response_format": true,
+        "has_tools": false
+      },
+      "result": {
+        "ok": true,
+        "status": 200,
+        "elapsed_s": 0.685,
+        "json": {
+          "id": "chatcmpl-8bab9b5960d19b01",
+          "object": "chat.completion",
+          "created": 1779052130,
+          "prompt_routed_experts": null,
+          "model": "aeon-ultimate",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "{\n  \"city\": \"Dallas\",\n  \"temperature_f\": 72,\n  \"condition\": \"clear\"\n}",
+                "refusal": null,
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [],
+                "reasoning": null
+              },
+              "logprobs": null,
+              "finish_reason": "stop",
+              "stop_reason": null,
+              "token_ids": null,
+              "routed_experts": null
+            }
+          ],
+          "service_tier": null,
+          "system_fingerprint": "vllm-0.20.2rc1.dev166+gf6490a284-4afcd4fa",
+          "usage": {
+            "prompt_tokens": 31,
+            "total_tokens": 61,
+            "completion_tokens": 30,
+            "prompt_tokens_details": null
+          },
+          "prompt_logprobs": null,
+          "prompt_token_ids": null,
+          "kv_transfer_params": null
+        },
+        "body_prefix": null
+      },
+      "content": "{\n  \"city\": \"Dallas\",\n  \"temperature_f\": 72,\n  \"condition\": \"clear\"\n}",
+      "content_len": 69,
+      "content_prefix": "{\n  \"city\": \"Dallas\",\n  \"temperature_f\": 72,\n  \"condition\": \"clear\"\n}",
+      "reasoning_len": null,
+      "reasoning_prefix": null,
+      "tool_calls": [],
+      "tool_call_count": 0,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 31,
+        "total_tokens": 61,
+        "completion_tokens": 30,
+        "prompt_tokens_details": null
+      },
+      "checks": {
+        "json_content_parseable": true
+      }
+    },
+    {
+      "name": "tool_call",
+      "payload_summary": {
+        "model": "aeon-ultimate",
+        "max_tokens": 96,
+        "temperature": 0,
+        "has_response_format": false,
+        "has_tools": true
+      },
+      "result": {
+        "ok": true,
+        "status": 200,
+        "elapsed_s": 1.186,
+        "json": {
+          "id": "chatcmpl-9f5d2fae7be89bd8",
+          "object": "chat.completion",
+          "created": 1779052131,
+          "prompt_routed_experts": null,
+          "model": "aeon-ultimate",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": null,
+                "refusal": null,
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "chatcmpl-tool-b871fa57561b2d19",
+                    "type": "function",
+                    "function": {
+                      "name": "get_weather",
+                      "arguments": "{\"city\": \"Dallas\"}"
+                    }
+                  }
+                ],
+                "reasoning": null
+              },
+              "logprobs": null,
+              "finish_reason": "tool_calls",
+              "stop_reason": null,
+              "token_ids": null,
+              "routed_experts": null
+            }
+          ],
+          "service_tier": null,
+          "system_fingerprint": "vllm-0.20.2rc1.dev166+gf6490a284-4afcd4fa",
+          "usage": {
+            "prompt_tokens": 285,
+            "total_tokens": 311,
+            "completion_tokens": 26,
+            "prompt_tokens_details": null
+          },
+          "prompt_logprobs": null,
+          "prompt_token_ids": null,
+          "kv_transfer_params": null
+        },
+        "body_prefix": null
+      },
+      "content": null,
+      "content_len": null,
+      "content_prefix": null,
+      "reasoning_len": null,
+      "reasoning_prefix": null,
+      "tool_calls": [
+        {
+          "id": "chatcmpl-tool-b871fa57561b2d19",
+          "type": "function",
+          "function": {
+            "name": "get_weather",
+            "arguments": "{\"city\": \"Dallas\"}"
+          }
+        }
+      ],
+      "tool_call_count": 1,
+      "finish_reason": "tool_calls",
+      "usage": {
+        "prompt_tokens": 285,
+        "total_tokens": 311,
+        "completion_tokens": 26,
+        "prompt_tokens_details": null
+      },
+      "checks": {
+        "has_openai_tool_call": true,
+        "raw_tool_text": false
+      }
+    }
+  ]
+}
