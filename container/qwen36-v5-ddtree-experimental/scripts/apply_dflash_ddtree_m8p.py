@@ -134,7 +134,9 @@ def patch_gdn_linear_attention(pkg_root: Path) -> None:
                         conv_weights,
                         self.conv1d.bias,
                         self.activation,
-                        conv_state_indices=spec_state_indices_tensor,
+                        conv_state_indices=spec_state_indices_tensor[
+                            : attn_metadata.num_spec_decodes
+                        ],
                         parent_ids=attn_metadata.ddtree_parent_ids[
                             : attn_metadata.num_spec_decodes
                         ],

@@ -2,7 +2,9 @@
 from __future__ import annotations
 
 import inspect
+import re
 import sys
+from dataclasses import fields
 from pathlib import Path
 
 import torch
@@ -56,17 +58,41 @@ def test_padded_parent_ids_preserve_request_order() -> None:
 
 def test_vllm_patch_source_present() -> None:
     from vllm.v1.attention.backends import gdn_attn
-    from vllm.v1.worker import gpu_model_runner
+    import vllm
 
     gdn_source = inspect.getsource(gdn_attn)
-    runner_source = inspect.getsource(gpu_model_runner.GPUModelRunner)
+    runner_source = (
+        Path(vllm.__file__).resolve().parent / "v1/worker/gpu_model_runner.py"
+    ).read_text()
     assert "ddtree_parent_ids" in gdn_source
     assert "build_padded_parent_ids" in runner_source
     assert "_last_ddtree_parent_ids_gpu" in runner_source
+
+
+def test_model_runner_output_kwargs_match_installed_dataclass() -> None:
+    from vllm.v1.outputs import ModelRunnerOutput
+    import vllm
+
+    vllm_root = Path(vllm.__file__).resolve().parent
+    runner_source = (vllm_root / "v1/worker/gpu_model_runner.py").read_text()
+    scheduler_source = (vllm_root / "v1/core/sched/scheduler.py").read_text()
+    valid_fields = {field.name for field in fields(ModelRunnerOutput)}
+    output_blocks = re.findall(
+        r"output = ModelRunnerOutput\(\n(?P<body>.*?)\n\s*\)",
+        runner_source,
+        flags=re.DOTALL,
+    )
+    assert output_blocks
+    for block in output_blocks:
+        for kwarg in re.findall(r"^\s+([a-zA-Z_][a-zA-Z0-9_]*)=", block, re.MULTILINE):
+            assert kwarg in valid_fields
+    if "routed_experts_dict" not in valid_fields:
+        assert "model_runner_output.routed_experts_dict" not in scheduler_source
 
 
 if __name__ == "__main__":
     test_full_parent_ids_from_payload()
     test_padded_parent_ids_preserve_request_order()
     test_vllm_patch_source_present()
+    test_model_runner_output_kwargs_match_installed_dataclass()
     print("DDTree parent metadata tests passed")

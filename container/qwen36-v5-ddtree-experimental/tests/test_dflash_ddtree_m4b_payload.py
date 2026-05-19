@@ -2,13 +2,19 @@
 from __future__ import annotations
 
 import inspect
+from pathlib import Path
 
 import torch
 
 from vllm.v1.outputs import DraftTokenIds
 from vllm.v1.spec_decode import dflash
 from vllm.v1.spec_decode.ddtree_tree import build_ddtree
-from vllm.v1.worker import gpu_model_runner
+
+
+def _vllm_source(rel: str) -> str:
+    import vllm
+
+    return (Path(vllm.__file__).resolve().parent / rel).read_text()
 
 
 def test_payload_source_present() -> None:
@@ -16,7 +22,7 @@ def test_payload_source_present() -> None:
     base_source = inspect.getsource(
         dflash.DFlashProposer.__mro__[1].propose
     )
-    runner_source = inspect.getsource(gpu_model_runner.GPUModelRunner)
+    runner_source = _vllm_source("v1/worker/gpu_model_runner.py")
     assert "_build_ddtree_payloads_from_logits" in dflash_source
     assert "pop_last_ddtree_payloads" in dflash_source
     assert "flat_fallback_token_ids" in dflash_source

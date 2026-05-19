@@ -121,8 +121,7 @@ from dataclasses import dataclass
         )
 """,
     )
-    replace_exact(
-        path,
+    old_quantized_blocks = [
         """        if is_quantized_kv_cache(self.kv_cache_dtype):
             # queries are quantized in the attention layer
             dtype = FlashAttentionBackend.get_fp8_dtype_for_flashattn(
@@ -135,11 +134,16 @@ from dataclasses import dataclass
 """,
         """        if is_quantized_kv_cache(self.kv_cache_dtype):
             # queries are quantized in the attention layer
-            dtype = FlashAttentionBackend.get_fp8_dtype_for_flashattn(
-                self.kv_cache_dtype
-            )
-            key_cache = key_cache.view(dtype)
-            value_cache = value_cache.view(dtype)
+            key_cache = key_cache.view(current_platform.fp8_dtype())
+            value_cache = value_cache.view(current_platform.fp8_dtype())
+
+        if not attn_metadata.use_cascade:
+""",
+    ]
+    new_quantized_block = """        if is_quantized_kv_cache(self.kv_cache_dtype):
+            # queries are quantized in the attention layer
+            key_cache = key_cache.view(current_platform.fp8_dtype())
+            value_cache = value_cache.view(current_platform.fp8_dtype())
 
         if (
             os.environ.get("DDTREE_EAGER_TREE_ATTN", "0") == "1"
@@ -162,8 +166,17 @@ from dataclasses import dataclass
             )
 
         if not attn_metadata.use_cascade:
-""",
-    )
+"""
+    text = path.read_text()
+    if new_quantized_block not in text:
+        for old_quantized_block in old_quantized_blocks:
+            if old_quantized_block in text:
+                replace_exact(path, old_quantized_block, new_quantized_block)
+                break
+        else:
+            raise RuntimeError(
+                f"Could not find FlashAttention quantized-cache block in {path}"
+            )
     replace_exact(
         path,
         """        return output

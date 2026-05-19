@@ -101,6 +101,11 @@ move from paper prototype toward live Qwen3.6 verification:
 - M11H: fused GDN replay hardening. Triton DDTree GDN parent loads are
   width-guarded so padded/guided decode windows cannot read past the parent-id
   tensor.
+- M11I-M11P: full-branch recurrent-state isolation and canonical build
+  compatibility. These milestones narrowed the Qwen3.6 corruption to
+  parent-aware recurrent replay, fixed the request-row/state-row mismatch by
+  slicing `conv_state_indices` to `num_spec_decodes`, and keep the canonical
+  image aligned with current vLLM nightly routed-expert output naming.
 
 Flat DFlash behavior is preserved unless `SPEC_METHOD=dflash_ddtree` and the
 guarded DDTree runtime env vars are enabled. The `ddtree` entrypoint enables the

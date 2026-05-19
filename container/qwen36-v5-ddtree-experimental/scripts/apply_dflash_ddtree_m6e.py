@@ -29,14 +29,12 @@ def clear_python_caches(pkg_root: Path) -> None:
 
 def patch_flex_power2_blocks(pkg_root: Path) -> None:
     path = pkg_root / "v1/attention/backends/flex_attention.py"
-    replace_exact(
-        path,
-        """        supports_small_blocks = is_torch_equal_or_newer("2.9.0.dev0")
+    old_legacy = """        supports_small_blocks = is_torch_equal_or_newer("2.9.0.dev0")
         self.direct_build: bool = supports_small_blocks
         self.q_block_size: int = 16 if supports_small_blocks else 128
         self.kv_block_size: int = self.block_size if supports_small_blocks else 128
-""",
-        """        supports_small_blocks = is_torch_equal_or_newer("2.9.0.dev0")
+"""
+    new_legacy = """        supports_small_blocks = is_torch_equal_or_newer("2.9.0.dev0")
         # aeon_dflash_ddtree_m6e
         # Qwen3.6 hybrid cache alignment can set attention pages to 864 tokens.
         # FlexAttention direct-build then feeds 864 into tl.arange, which fails
@@ -54,19 +52,97 @@ def patch_flex_power2_blocks(pkg_root: Path) -> None:
         self.kv_block_size: int = (
             self.block_size if self.direct_build else 128
         )
+"""
+    old_current_variants = [
+        """        supports_small_blocks = is_torch_equal_or_newer("2.9.0.dev0")
+        self.direct_build: bool = supports_small_blocks
+
+        self.q_block_size, self.kv_block_size = self._get_block_sizes(
+            vllm_config.model_config.get_sliding_window(),
+            supports_small_blocks,
+            vllm_config.compilation_config.static_forward_context,
+        )
 """,
+        """        supports_small_blocks = is_torch_equal_or_newer("2.9.0.dev0")
+        self.direct_build: bool = supports_small_blocks
+
+        self.q_block_size, self.kv_block_size = self._get_block_sizes(
+            vllm_config.attention_config,
+            supports_small_blocks,
+            self.block_size,
+        )
+""",
+    ]
+    new_current_variants = [
+        """        supports_small_blocks = is_torch_equal_or_newer("2.9.0.dev0")
+        # aeon_dflash_ddtree_m6e
+        # Qwen3.6 hybrid cache alignment can set attention pages to 864 tokens.
+        # FlexAttention direct-build then feeds 864 into tl.arange, which fails
+        # because Triton requires a power-of-two range. Correctness mode uses
+        # the generic block-mask path with a power-of-two KV block instead.
+        block_size_is_power2 = self.block_size > 0 and (
+            self.block_size & (self.block_size - 1)
+        ) == 0
+        force_generic_blocks = (
+            os.environ.get("DDTREE_FLEX_TREE_MASK", "0") == "1"
+            or not block_size_is_power2
+        )
+        self.direct_build: bool = supports_small_blocks and not force_generic_blocks
+
+        self.q_block_size, self.kv_block_size = self._get_block_sizes(
+            vllm_config.model_config.get_sliding_window(),
+            supports_small_blocks and not force_generic_blocks,
+            vllm_config.compilation_config.static_forward_context,
+        )
+""",
+        """        supports_small_blocks = is_torch_equal_or_newer("2.9.0.dev0")
+        # aeon_dflash_ddtree_m6e
+        # Qwen3.6 hybrid cache alignment can set attention pages to 864 tokens.
+        # FlexAttention direct-build then feeds 864 into tl.arange, which fails
+        # because Triton requires a power-of-two range. Correctness mode uses
+        # the generic block-mask path with a power-of-two KV block instead.
+        block_size_is_power2 = self.block_size > 0 and (
+            self.block_size & (self.block_size - 1)
+        ) == 0
+        force_generic_blocks = (
+            os.environ.get("DDTREE_FLEX_TREE_MASK", "0") == "1"
+            or not block_size_is_power2
+        )
+        self.direct_build: bool = supports_small_blocks and not force_generic_blocks
+
+        self.q_block_size, self.kv_block_size = self._get_block_sizes(
+            vllm_config.attention_config,
+            supports_small_blocks and not force_generic_blocks,
+            self.block_size,
+        )
+""",
+    ]
+    text = path.read_text()
+    if new_legacy in text or any(new in text for new in new_current_variants):
+        return
+    if old_legacy in text:
+        replace_exact(path, old_legacy, new_legacy)
+        return
+    for old_current, new_current in zip(old_current_variants, new_current_variants):
+        if old_current in text:
+            replace_exact(path, old_current, new_current)
+            return
+    raise RuntimeError(
+        f"Could not find supported FlexAttention block-size pattern in {path}"
     )
 
 
 def verify_static(pkg_root: Path) -> None:
     text = (pkg_root / "v1/attention/backends/flex_attention.py").read_text()
-    for needle in (
-        "aeon_dflash_ddtree_m6e",
-        "force_generic_blocks",
-        "self.block_size if self.direct_build else 128",
-    ):
+    required = ("aeon_dflash_ddtree_m6e", "force_generic_blocks")
+    for needle in required:
         if needle not in text:
             raise RuntimeError(f"Static M6E verification failed: missing {needle}")
+    if (
+        "self.block_size if self.direct_build else 128" not in text
+        and "supports_small_blocks and not force_generic_blocks" not in text
+    ):
+        raise RuntimeError("Static M6E verification failed: missing generic-block guard")
 
 
 def main() -> int:

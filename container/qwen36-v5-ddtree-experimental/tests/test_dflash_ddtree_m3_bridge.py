@@ -3,6 +3,13 @@ from __future__ import annotations
 
 import inspect
 from dataclasses import fields
+from pathlib import Path
+
+
+def _vllm_source(rel: str) -> str:
+    import vllm
+
+    return (Path(vllm.__file__).resolve().parent / rel).read_text()
 
 
 def test_draft_token_ids_carries_tree_payload() -> None:
@@ -48,12 +55,14 @@ def test_request_and_scheduler_sources_keep_tree_payload_in_step() -> None:
 
 
 def test_gpu_model_runner_sources_receive_tree_payload() -> None:
-    from vllm.v1.worker.gpu_model_runner import GPUModelRunner
-
-    execute = inspect.getsource(GPUModelRunner.execute_model)
+    # Read the installed source directly instead of importing GPUModelRunner.
+    # Upstream nightly can temporarily drift internal optional imports unrelated
+    # to this source-contract test.
+    source = _vllm_source("v1/worker/gpu_model_runner.py")
+    execute = source
     assert "scheduled_spec_decode_trees=spec_decode_trees_copy" in execute
 
-    prepare = inspect.getsource(GPUModelRunner._prepare_inputs)
+    prepare = source
     assert "_last_ddtree_metadata_payload" in prepare
     assert "scheduler_output.scheduled_spec_decode_trees or None" in prepare
 
