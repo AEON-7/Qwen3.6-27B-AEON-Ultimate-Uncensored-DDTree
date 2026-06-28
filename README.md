@@ -2,6 +2,8 @@
 
 # Qwen3.6-27B-AEON-Ultimate-Uncensored+DDTree
 
+![AEON Qwen — Supreme Being of the Digital Cosmos](cartridge.jpg)
+
 ### Experimental DDTree-on-vLLM research track for DGX Spark / GB10
 
 [![Container](https://img.shields.io/badge/ghcr.io-vllm--aeon--ultimate--ddtree-purple?logo=docker)](https://github.com/users/AEON-7/packages/container/package/vllm-aeon-ultimate-ddtree)
